@@ -32,7 +32,7 @@ SET(CFG_BUILD_KERNEL_STACK "Link to Application"
     CACHE STRING "Configure how to build the kernel stack")
 
 SET(KernelStackBuildTypes
-    "Link to Application;Linux Userspace Daemon;Linux Kernel Module;None"
+    "Link to Application;Linux Userspace Daemon;Linux Kernel Module;Linux PCIe Lite Interface;None"
     CACHE INTERNAL
     "List of possible kernel stack build types")
 
@@ -45,6 +45,7 @@ IF (CFG_BUILD_KERNEL_STACK STREQUAL "Link to Application")
          "Link kernel stack directly into application (Single process solution)")
     UNSET (CFG_KERNEL_STACK_USERSPACE_DAEMON CACHE)
     UNSET (CFG_KERNEL_STACK_KERNEL_MODULE CACHE)
+    UNSET (CFG_KERNEL_STACK_PCIE_LITE CACHE)
 
 ELSEIF (CFG_BUILD_KERNEL_STACK STREQUAL "Linux Userspace Daemon")
 
@@ -52,6 +53,7 @@ ELSEIF (CFG_BUILD_KERNEL_STACK STREQUAL "Linux Userspace Daemon")
          "Build kernel stack as Linux userspace daemon")
     UNSET (CFG_KERNEL_STACK_DIRECTLINK CACHE)
     UNSET (CFG_KERNEL_STACK_KERNEL_MODULE CACHE)
+    UNSET (CFG_KERNEL_STACK_PCIE_LITE CACHE)
 
 ELSEIF (CFG_BUILD_KERNEL_STACK STREQUAL "Linux Kernel Module")
 
@@ -60,6 +62,14 @@ ELSEIF (CFG_BUILD_KERNEL_STACK STREQUAL "Linux Kernel Module")
     UNSET (CFG_KERNEL_STACK_USERSPACE_DAEMON CACHE)
     UNSET (CFG_KERNEL_STACK_DIRECTLINK CACHE)
     UNSET (CFG_KERNEL_STACK_DIRECTLINK CACHE)
+
+ELSEIF (CFG_BUILD_KERNEL_STACK STREQUAL "Linux PCIe Lite Interface")
+
+    SET (CFG_KERNEL_STACK_PCIE_LITE ON CACHE INTERNAL
+         "Interface with kernel stack through PCIe lite interface")
+    UNSET (CFG_KERNEL_STACK_USERSPACE_DAEMON CACHE)
+    UNSET (CFG_KERNEL_STACK_DIRECTLINK CACHE)
+    UNSET (CFG_KERNEL_STACK_KERNEL_MODULE CACHE)
 
 ELSEIF (CFG_BUILD_KERNEL_STACK STREQUAL "None")
     UNSET (CFG_KERNEL_STACK_USERSPACE_DAEMON CACHE)

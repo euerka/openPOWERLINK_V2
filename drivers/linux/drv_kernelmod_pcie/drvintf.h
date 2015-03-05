@@ -1,16 +1,15 @@
 /**
 ********************************************************************************
-\file   linuxkernel/target-linuxkernel.c
+\file   drvintf.h
 
-\brief  Target specific functions for Linux kernel
+\brief  Driver interface header file
 
-The file implements target specific functions used in the openPOWERLINK stack.
+Driver interface for the kernel daemon - Header file
 
-\ingroup module_target
 *******************************************************************************/
 
 /*------------------------------------------------------------------------------
-Copyright (c) 2014, Bernecker+Rainer Industrie-Elektronik Ges.m.b.H. (B&R)
+Copyright (c) 2015, Kalycito Infotech Private Limited
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -36,87 +35,58 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ------------------------------------------------------------------------------*/
 
+#ifndef _INC_drvintf_H_
+#define _INC_drvintf_H_
+
 //------------------------------------------------------------------------------
 // includes
 //------------------------------------------------------------------------------
-#include <common/oplkinc.h>
+#include <common/driver.h>
+#include <common/ctrl.h>
 #include <common/target.h>
-#include <linux/hrtimer.h>
-
-#include <linux/sched.h>
-
-//============================================================================//
-//            P U B L I C   F U N C T I O N S                                 //
-//============================================================================//
+#include <kernel/ctrlk.h>
+#include <kernel/ctrlkcal.h>
+#include <kernel/dllkcal.h>
+#include <kernel/pdokcal.h>
+#include <common/ctrlcal-mem.h>
 
 //------------------------------------------------------------------------------
-/**
-\brief  Get current timestamp
-
-The function returns the current timestamp in nanoseconds.
-
-\return The function returns the timestamp in nanoseconds
-*/
+// const defines
 //------------------------------------------------------------------------------
-ULONGLONG target_getCurrentTimestamp(void)
-{
-    ULONGLONG  timeStamp;
 
-    timeStamp = ktime_to_ns(ktime_get());
-    return timeStamp;
+//------------------------------------------------------------------------------
+// typedef
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// function prototypes
+//------------------------------------------------------------------------------
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+void        drv_executeCmd(tCtrlCmd* ctrlCmd_p);
+void        drv_readInitParam(tCtrlInitParam* pInitParam_p);
+void        drv_storeInitParam(tCtrlInitParam* pInitParam_p);
+void        drv_getStatus(UINT16* status_p);
+void        drv_getHeartbeat(UINT16* heartbeat);
+void        drv_sendAsyncFrame(unsigned char* pArg_p);
+void        drv_writeErrorObject(tErrHndIoctl* pWriteObject_p);
+void        drv_readErrorObject(tErrHndIoctl* pReadObject_p);
+tOplkError  drv_initDualProcDrv(void);
+void        drv_exitDualProcDrv(void);
+void        drv_postEvent(void* pEvent_p);
+void        drv_getEvent(void* pEvent_p, size_t* pSize_p);
+tOplkError  drv_getPdoMem(UINT8** ppPdoMem_p, size_t memSize_p);
+void        drv_freePdoMem(UINT8* pPdoMem_p, size_t memSize_p);
+tOplkError  drv_getBenchmarkMem(UINT8** ppBenchmarkMem_p);
+void        drv_freeBenchmarkMem(UINT8* pBenchmarkMem_p);
+tOplkError  drv_mapKernelMem(UINT8** pKernelMem_p, UINT8** pUserMem_p);
+void        drv_unmapKernelMem(UINT8* pUserMem_p);
+tOplkError  drv_waitSyncEvent(void);
+
+#ifdef __cplusplus
 }
+#endif
 
-//------------------------------------------------------------------------------
-/**
-\brief    Get current system tick
-
-This function returns the current system tick determined by the system timer.
-
-\return Returns the system tick in milliseconds
-
-\ingroup module_target
-*/
-//------------------------------------------------------------------------------
-UINT32 target_getTickCount(void)
-{
-    return jiffies * 1000 / HZ;
-}
-
-//------------------------------------------------------------------------------
-/**
-\brief    Enable global interrupt
-
-This function enables/disables global interrupts.
-
-\param  fEnable_p               TRUE = enable interrupts
-                                FALSE = disable interrupts
-
-\ingroup module_target
-*/
-//------------------------------------------------------------------------------
-void target_enableGlobalInterrupt(BYTE fEnable_p)
-{
-    // Nothing to do here
-}
-
-//------------------------------------------------------------------------------
-/**
-\brief  Set POWERLINK status/error LED
-
-The function sets the POWERLINK status/error LED.
-
-\param  ledType_p       Determines which LED shall be set/reset.
-\param  fLedOn_p        Set the addressed LED on (TRUE) or off (FALSE).
-
-\return The function returns a tOplkError error code.
-
-\ingroup module_target
-*/
-//------------------------------------------------------------------------------
-tOplkError target_setLed(tLedType ledType_p, BOOL fLedOn_p)
-{
-    UNUSED_PARAMETER(ledType_p);
-    UNUSED_PARAMETER(fLedOn_p);
-
-    return kErrorOk;
-}
+#endif /* _INC_drvintf_H_ */

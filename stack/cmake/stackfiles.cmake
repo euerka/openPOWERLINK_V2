@@ -186,6 +186,11 @@ SET(EVENT_UCAL_LINUXIOCTL_SOURCES
     ${USER_SOURCE_DIR}/event/eventucal-linuxioctl.c
     )
 
+SET(EVENT_UCAL_LINUXPCIE_SOURCES
+    ${USER_SOURCE_DIR}/event/eventucal-linuxpcie.c
+    ${USER_SOURCE_DIR}/event/eventucalintf-circbuf.c
+    )
+
 SET(EVENT_UCAL_WINDOWS_SOURCES
     ${USER_SOURCE_DIR}/event/eventucal-win32.c
     ${USER_SOURCE_DIR}/event/eventucalintf-circbuf.c

@@ -1,16 +1,15 @@
 /**
 ********************************************************************************
-\file   linuxkernel/target-linuxkernel.c
+\file   pcieDrv.h
 
-\brief  Target specific functions for Linux kernel
+\brief  PCIe interface Driver header file
 
-The file implements target specific functions used in the openPOWERLINK stack.
+Driver interface for the kernel daemon - Header file
 
-\ingroup module_target
 *******************************************************************************/
 
 /*------------------------------------------------------------------------------
-Copyright (c) 2014, Bernecker+Rainer Industrie-Elektronik Ges.m.b.H. (B&R)
+Copyright (c) 2015, Kalycito Infotech Private Limited
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -36,87 +35,28 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ------------------------------------------------------------------------------*/
 
+#ifndef _INC_pciedrv_H_
+#define _INC_pciedrv_H_
+
 //------------------------------------------------------------------------------
 // includes
 //------------------------------------------------------------------------------
-#include <common/oplkinc.h>
-#include <common/target.h>
-#include <linux/hrtimer.h>
-
-#include <linux/sched.h>
-
-//============================================================================//
-//            P U B L I C   F U N C T I O N S                                 //
-//============================================================================//
+#include <oplk/oplk.h>
+//------------------------------------------------------------------------------
+// const defines
+//------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-/**
-\brief  Get current timestamp
-
-The function returns the current timestamp in nanoseconds.
-
-\return The function returns the timestamp in nanoseconds
-*/
+// typedef
 //------------------------------------------------------------------------------
-ULONGLONG target_getCurrentTimestamp(void)
-{
-    ULONGLONG  timeStamp;
-
-    timeStamp = ktime_to_ns(ktime_get());
-    return timeStamp;
-}
 
 //------------------------------------------------------------------------------
-/**
-\brief    Get current system tick
-
-This function returns the current system tick determined by the system timer.
-
-\return Returns the system tick in milliseconds
-
-\ingroup module_target
-*/
+// function prototypes
 //------------------------------------------------------------------------------
-UINT32 target_getTickCount(void)
-{
-    return jiffies * 1000 / HZ;
-}
 
-//------------------------------------------------------------------------------
-/**
-\brief    Enable global interrupt
+tOplkError  pcieDrv_init(void);
+tOplkError  pcieDrv_shutdown(void);
+ULONG       pcieDrv_getBarLength(ULONG barCount_p);
+ULONG       pcieDrv_getBarAddr(UINT8 barCount_p);
 
-This function enables/disables global interrupts.
-
-\param  fEnable_p               TRUE = enable interrupts
-                                FALSE = disable interrupts
-
-\ingroup module_target
-*/
-//------------------------------------------------------------------------------
-void target_enableGlobalInterrupt(BYTE fEnable_p)
-{
-    // Nothing to do here
-}
-
-//------------------------------------------------------------------------------
-/**
-\brief  Set POWERLINK status/error LED
-
-The function sets the POWERLINK status/error LED.
-
-\param  ledType_p       Determines which LED shall be set/reset.
-\param  fLedOn_p        Set the addressed LED on (TRUE) or off (FALSE).
-
-\return The function returns a tOplkError error code.
-
-\ingroup module_target
-*/
-//------------------------------------------------------------------------------
-tOplkError target_setLed(tLedType ledType_p, BOOL fLedOn_p)
-{
-    UNUSED_PARAMETER(ledType_p);
-    UNUSED_PARAMETER(fLedOn_p);
-
-    return kErrorOk;
-}
+#endif /* _INC_pciedrv_H_ */
