@@ -151,7 +151,10 @@ CFG_TCI_MEM_NAME=
 if [ "${CPU_NAME}" == "${CFG_APP_CPU_NAME}" ]; then
     # The bsp's cpu matches to the app part
     CFG_TCI_MEM_NAME=${CFG_APP_TCI_MEM_NAME}
-    if [ "${CFG_NODE}" == "CN" ] && [ -n "${CFG_OPENMAC}" ]; then
+    if [ "${CFG_NODE}" == "CN" ] && [ -n "${CFG_HOSTINTERFACE}" ]; then
+        LIB_NAME=oplkcnapp-hostif
+        LIB_SOURCES=
+    elif [ "${CFG_NODE}" == "CN" ] && [ -n "${CFG_OPENMAC}" ]; then
         LIB_NAME=oplkcn
         LIB_SOURCES=${HW_COMMON_PATH}/drivers/openmac/omethlib_phycfg.c
     elif [ "${CFG_NODE}" == "MN" ] && [ -n "${CFG_HOSTINTERFACE}" ]; then
@@ -161,7 +164,10 @@ if [ "${CPU_NAME}" == "${CFG_APP_CPU_NAME}" ]; then
 elif [ "${CPU_NAME}" == "${CFG_DRV_CPU_NAME}" ]; then
     # The bsp's cpu matches to the drv part
     CFG_TCI_MEM_NAME=${CFG_DRV_TCI_MEM_NAME}
-    if [ "${CFG_NODE}" == "MN" ] && [ -n "${CFG_OPENMAC}" ] && [ -n "${CFG_HOSTINTERFACE}" ]; then
+    if [ "${CFG_NODE}" == "CN" ] && [ -n "${CFG_OPENMAC}" ] && [ -n "${CFG_HOSTINTERFACE}" ]; then
+        LIB_NAME=oplkcndrv-hostif
+        LIB_SOURCES=${HW_COMMON_PATH}/drivers/openmac/omethlib_phycfg.c
+    elif [ "${CFG_NODE}" == "MN" ] && [ -n "${CFG_OPENMAC}" ] && [ -n "${CFG_HOSTINTERFACE}" ]; then
         LIB_NAME=oplkmndrv-hostif
         LIB_SOURCES=${HW_COMMON_PATH}/drivers/openmac/omethlib_phycfg.c
     fi
