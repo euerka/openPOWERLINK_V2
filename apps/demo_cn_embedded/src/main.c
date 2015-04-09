@@ -67,6 +67,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define MAC_ADDR          0x00, 0x12, 0x34, 0x56, 0x78, NODEID
 
 //------------------------------------------------------------------------------
+// functional defines
+//------------------------------------------------------------------------------
+//#define APP_POLL_PDO_NONSYNC
+
+//------------------------------------------------------------------------------
 // module global vars
 //------------------------------------------------------------------------------
 
@@ -245,7 +250,9 @@ static tOplkError initPowerlink(tInstance* pInstance_p)
 
     // set callback functions
     initParam.pfnCbEvent = processEvents;
+#ifndef APP_POLL_PDO_NONSYNC
     initParam.pfnCbSync  = processSync;
+#endif
 
     // initialize POWERLINK stack
     ret = oplk_init(&initParam);
@@ -306,6 +313,18 @@ static tOplkError loopMain(tInstance* pInstance_p)
         // exit loop if NMT is in off state
         if (pInstance_p->fGsOff != FALSE)
             break;
+
+#ifdef APP_POLL_PDO_NONSYNC
+        // poll PDO data
+        static UINT16 counter_l;
+        counter_l++;
+        // execute sync function every nth time to reduce CPU load
+        if ((counter_l & 0x0800) !=0)
+        {
+            if ((ret = processSync()) != kErrorOk)
+                break;
+        }
+#endif
     }
 
     return ret;
