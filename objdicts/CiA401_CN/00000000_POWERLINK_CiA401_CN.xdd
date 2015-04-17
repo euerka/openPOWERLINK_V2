@@ -105,6 +105,74 @@
           </characteristicsList>
         </capabilities>
       </DeviceFunction>
+      <ApplicationProcess>
+          <dataTypeList>
+               <!-- Define memory layout of an object using a structure -->
+               <struct name="Index2000_S00" uniqueID="UID_DT_Index2000_S00">
+                   <varDeclaration name="Index2000_USINT" uniqueID="Index2000_USINT" size="36">
+                       <label lang="en">MyVariable1</label>
+                       <label lang="de">MyVariable1</label>
+                       <USINT />
+                   </varDeclaration>
+               </struct>
+               <struct name="Index2100_S00" uniqueID="UID_DT_Index2100_S00">
+                   <varDeclaration name="Index2100_USINT" uniqueID="Index2100_USINT" size="24">
+                       <label lang="en">MyVariable2</label>
+                       <label lang="de">MyVariable2</label>
+                       <USINT />
+                   </varDeclaration>
+               </struct>
+               <struct name="Index2101_S00" uniqueID="UID_DT_Index2101_S00">
+                   <varDeclaration name="Index2101_USINT" uniqueID="Index2101_USINT" size="24">
+                       <label lang="en">MyVariable2</label>
+                       <label lang="de">MyVariable2</label>
+                       <USINT />
+                   </varDeclaration>
+               </struct>
+               <struct name="Index2300_S01" uniqueID="UID_DT_Index2300_S01">
+                   <varDeclaration name="Index2300_USINT" uniqueID="Index2300_USINT" size="0x20">
+                       <label lang="en">MyVariable3</label>
+                       <label lang="de">MyVariable3</label>
+                       <USINT />
+                   </varDeclaration>
+               </struct>
+               <struct name="Index2301_S00" uniqueID="UID_DT_Index2301_S00">
+                   <varDeclaration name="Index2301_USINT" uniqueID="Index2301_USINT" size="0x20">
+                       <label lang="en">MyVariable4</label>
+                       <label lang="de">MyVariable4</label>
+                       <USINT />
+                   </varDeclaration>
+               </struct>
+          </dataTypeList>
+          <parameterList>
+               <!-- Defined a parameter which is assigned to a object/subObject via its uniqueID -->
+               <parameter uniqueID="UID_DOM_Index2000_S00" access="read">
+                   <label lang="en">TBD</label>
+                   <label lang="de">TBD</label>
+                   <dataTypeIDRef uniqueIDRef="UID_DT_Index2000_S00" />
+               </parameter>
+               <parameter uniqueID="UID_DOM_Index2100_S00" access="write">
+                   <label lang="en">TBD</label>
+                   <label lang="de">TBD</label>
+                   <dataTypeIDRef uniqueIDRef="UID_DT_Index2100_S00" />
+               </parameter>
+               <parameter uniqueID="UID_DOM_Index2101_S00" access="readWrite">
+                   <label lang="en">TBD</label>
+                   <label lang="de">TBD</label>
+                   <dataTypeIDRef uniqueIDRef="UID_DT_Index2101_S00" />
+               </parameter>
+               <parameter uniqueID="UID_DOM_Index2300_S01" access="readWrite">
+                   <label lang="en">TBD</label>
+                   <label lang="de">TBD</label>
+                   <dataTypeIDRef uniqueIDRef="UID_DT_Index2300_S01" />
+               </parameter>
+               <parameter uniqueID="UID_DOM_Index2301_S00" access="readWrite">
+                   <label lang="en">TBD</label>
+                   <label lang="de">TBD</label>
+                   <dataTypeIDRef uniqueIDRef="UID_DT_Index2301_S00" />
+               </parameter>
+          </parameterList>
+      </ApplicationProcess>
     </ProfileBody>
   </ISO15745Profile>
   <ISO15745Profile>
@@ -1462,7 +1530,14 @@
           <Object index="1F9E" name="NMT_ResetCmd_U8" objectType="7" dataType="0005" accessType="rw" PDOmapping="no" defaultValue="255"/>
 
           <!-- Manufacturer Specific Profile Area (0x2000 - 0x5FFF): may freely be used by the device manufacturer -->
-
+          <Object index="2000" name="DOMAIN_TPDO_0_00h_AU8" objectType="7" PDOmapping="TPDO" uniqueIDRef="UID_DOM_Index2000_S00"/>
+          <Object index="2100" name="DOMAIN_RPDO_0_00h_AU8" objectType="7" PDOmapping="RPDO" uniqueIDRef="UID_DOM_Index2100_S00"/>
+          <Object index="2101" name="DOMAIN_TRPDO_0_00h_AU8" objectType="7" PDOmapping="optional" uniqueIDRef="UID_DOM_Index2101_S00"/>
+          <Object index="2300" name="DOMAIN_SDO_0_00h_AU8" objectType="9">
+              <SubObject subIndex="00" name="NumberOfEntries" objectType="7" dataType="0005" accessType="const" PDOmapping="no" defaultValue="1"/>
+              <SubObject subIndex="01" name="DOMAIN_SDO_0" objectType="7" uniqueIDRef="UID_DOM_Index2300_S01"/>
+          </Object>
+          <Object index="2301" name="DOMAIN_SDO_1_00h_AU8" objectType="7" PDOmapping="no" uniqueIDRef="UID_DOM_Index2301_S00"/>
 
           <!-- Standardised Device Profile Area (0x6000 - 0x9FFF): may be used according to a CiA device profile. The profile to be used is given by NMT_DeviceType_U32 -->
           <Object index="6000" name="DigitalInput_00h_AU8" objectType="8" dataType="0005">

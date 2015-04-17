@@ -200,6 +200,29 @@ OBD_BEGIN ()
 
     OBD_BEGIN_PART_MANUFACTURER ()
 
+        // PDO domain objects
+        OBD_BEGIN_INDEX_RAM(0x2000, 0x01, NULL)
+            OBD_SUBINDEX_RAM_DOMAIN(0x2000, 0x00, kObdAccVPR, DOMAIN_TPDO_0)
+        OBD_END_INDEX(0x2000)
+
+        OBD_BEGIN_INDEX_RAM(0x2100, 0x01, NULL)
+            OBD_SUBINDEX_RAM_DOMAIN(0x2100, 0x00, kObdAccVPW, DOMAIN_RPDO_0)
+        OBD_END_INDEX(0x2100)
+
+        OBD_BEGIN_INDEX_RAM(0x2101, 0x01, NULL)
+            OBD_SUBINDEX_RAM_DOMAIN(0x2101, 0x00, kObdAccVPRW, DOMAIN_TRPDO_0)
+        OBD_END_INDEX(0x2101)
+
+        // SDO domain objects
+        OBD_BEGIN_INDEX_RAM(0x2300, 0x02, NULL)
+            OBD_SUBINDEX_RAM_VAR(0x2300, 0x00, kObdTypeUInt8, kObdAccConst, tObdUnsigned8, NumberOfEntries, 0x01)
+            OBD_SUBINDEX_RAM_USERDEF(0x2300, 0x01, kObdTypeDomain, kObdAccVRW, tObdDomain, DOMAIN_SDO_0, 0x00)
+        OBD_END_INDEX(0x2300)
+
+        OBD_BEGIN_INDEX_RAM(0x2301, 0x01, NULL)
+            OBD_SUBINDEX_RAM_DOMAIN(0x2301, 0x00, kObdAccVR, DOMAIN_SDO_1)
+        OBD_END_INDEX(0x2301)
+
     OBD_END_PART ()
 
     OBD_BEGIN_PART_DEVICE ()

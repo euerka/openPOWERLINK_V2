@@ -78,12 +78,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 typedef struct
 {
    BYTE    digitalIn[4];
+   BYTE    domainIn[1490];
+   BYTE    domainInOut[1490];
+
 } PI_IN;
 
 /* structure for output process image */
 typedef struct
 {
    BYTE    digitalOut[4];
+   BYTE    domainOut[1490];
+   BYTE    domainInOut[1490];
 } PI_OUT;
 
 //------------------------------------------------------------------------------
@@ -93,10 +98,16 @@ typedef struct
 static PI_IN*   pProcessImageIn_l;
 static PI_OUT*  pProcessImageOut_l;
 
+/* non cyclic objects */
+static BYTE SDO_Domain_0_l[3000];
+static BYTE SDO_Domain_1_l[3000];
+
+
 //------------------------------------------------------------------------------
 // local function prototypes
 //------------------------------------------------------------------------------
 static tOplkError initProcessImage(void);
+static tOplkError initObjects (void);
 
 //============================================================================//
 //            P U B L I C   F U N C T I O N S                                 //
@@ -118,6 +129,10 @@ tOplkError initApp(void)
     tOplkError ret = kErrorOk;
 
     ret = initProcessImage();
+    if (ret != kErrorOk)
+        return ret;
+
+    ret = initObjects();
 
     return ret;
 }
@@ -174,6 +189,10 @@ tOplkError processSync(void)
     pProcessImageIn_l->digitalIn[1] = appInVal;
     pProcessImageIn_l->digitalIn[2] = appInVal;
     pProcessImageIn_l->digitalIn[3] = appInVal;
+
+    // TESTCASE_3_1_x
+    // loop 0x6200/0x01 -> 0x6000/0x03
+    pProcessImageIn_l->digitalIn[2] = pProcessImageOut_l->digitalOut[0];
 
     ret = oplk_exchangeProcessImageIn();
 
@@ -237,10 +256,100 @@ static tOplkError initProcessImage(void)
         return ret;
     }
 
-    PRINTF("Linking process vars... ok\n\n");
+    obdSize = sizeof(pProcessImageIn_l->domainIn);
+    PRINTF("Link domain object to TPDO to 0x2000/0x00, size %d bytes\n", obdSize);
+    varEntries = 1;
+    ret = oplk_linkProcessImageObject(0x2000, 0x00, offsetof(PI_IN, domainIn),
+                                      FALSE, obdSize, &varEntries);
+    if (ret != kErrorOk)
+    {
+        PRINTF("linking process vars ... error %04x\n\"%s\"\n\n", ret, debugstr_getRetValStr(ret));
+        return ret;
+    }
+
+    obdSize = sizeof(pProcessImageOut_l->domainOut);
+    PRINTF("Link domain object to RPDO to 0x2100/0x00, size %d bytes\n", obdSize);
+    varEntries = 1;
+    ret = oplk_linkProcessImageObject(0x2100, 0x00, offsetof(PI_OUT, domainOut),
+                                      TRUE, obdSize, &varEntries);
+    if (ret != kErrorOk)
+    {
+        PRINTF("linking process vars ... error %04x\n\"%s\"\n\n", ret, debugstr_getRetValStr(ret));
+        return ret;
+    }
+
+    obdSize = sizeof(pProcessImageIn_l->domainInOut);
+    PRINTF("Link domain object to TPDO to 0x2101/0x00, size %d bytes\n", obdSize);
+    varEntries = 1;
+    ret = oplk_linkProcessImageObject(0x2100, 0x00, offsetof(PI_IN, domainInOut),
+                                      FALSE, obdSize, &varEntries);
+    if (ret != kErrorOk)
+    {
+        PRINTF("linking process vars ... error %04x\n\"%s\"\n\n", ret, debugstr_getRetValStr(ret));
+        return ret;
+    }
+
+    obdSize = sizeof(pProcessImageOut_l->domainInOut);
+    PRINTF("Link domain object to RPDO to 0x2101/0x00, size %d bytes\n", obdSize);
+    varEntries = 1;
+    ret = oplk_linkProcessImageObject(0x2100, 0x00, offsetof(PI_OUT, domainInOut),
+                                      TRUE, obdSize, &varEntries);
+    if (ret != kErrorOk)
+    {
+        PRINTF("linking process vars ... error %04x\n\"%s\"\n\n", ret, debugstr_getRetValStr(ret));
+        return ret;
+    }
+
+    PRINTF("Linking process image vars... ok\n\n");
 
     return kErrorOk;
 }
+
+//------------------------------------------------------------------------------
+/**
+\brief    Initialize object links
+
+Initialize object links of variables which are not part of the process image.
+Typically, this are objects which are only asynchronously accessed.
+
+\return The function returns a tOplkError error code.
+*/
+//------------------------------------------------------------------------------
+static tOplkError initObjects (void)
+{
+    tOplkError      ret = kErrorOk;
+    UINT            varEntries;
+    tObdSize        obdSize;
+
+    obdSize = sizeof(SDO_Domain_0_l);
+    PRINTF("Link domain object to (SDO) to 0x2300/0x01, size %d bytes\n", obdSize);
+    varEntries = 1;
+    ret = oplk_linkObject(0x2300, &SDO_Domain_0_l, &varEntries, &obdSize, 0x01);
+    if (ret != kErrorOk)
+    {
+        PRINTF("linking process vars ... error %04x\n\"%s\"\n\n", ret, debugstr_getRetValStr(ret));
+    }
+
+    SDO_Domain_1_l[0] = 0xaa; // mark beginning
+    SDO_Domain_1_l[255] = 0xbb; // mark gap
+    SDO_Domain_1_l[256] = 0xcc; // mark gap
+    SDO_Domain_1_l[sizeof(SDO_Domain_0_l)-1] = 0xee; // mark end
+
+    obdSize = sizeof(SDO_Domain_1_l);
+    PRINTF("Link domain object to (SDO) to 0x2301/0x00, size %d bytes\n", obdSize);
+    varEntries = 1;
+    ret = oplk_linkObject(0x2301, &SDO_Domain_1_l, &varEntries, &obdSize, 0x00);
+    if (ret != kErrorOk)
+    {
+        PRINTF("linking process vars ... error %04x\n\"%s\"\n\n", ret, debugstr_getRetValStr(ret));
+
+    }
+
+    PRINTF("Linking non-mappable object vars... ok\n\n");
+
+    return ret;
+}
+
 
 ///\}
 

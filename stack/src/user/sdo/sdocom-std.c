@@ -58,7 +58,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // const defines
 //------------------------------------------------------------------------------
 #ifndef SDO_MAX_SEGMENT_SIZE
-#define SDO_MAX_SEGMENT_SIZE        256
+#define SDO_MAX_SEGMENT_SIZE        256 // Min: 256 Max: 1456
 #endif
 
 #ifndef CONFIG_SDO_MAX_CONNECTION_COM
