@@ -139,9 +139,9 @@ tOplkError ctrlucal_init(void)
         return kErrorNoResource;
     }
 
-    for (loopCount = 0; loopCount <= DPSHM_ENABLE_TIMEOUT_SEC; loopCount++)
+    for (loopCount = 0; loopCount <= DPSHM_ENABLE_TIMEOUT_SEC*100; loopCount++)
     {
-        target_msleep(1000U);
+        target_msleep(10U);
         dualRet = dualprocshm_checkShmIntfState(instance_l.dualProcDrvInst);
         if (dualRet != kDualprocshmIntfDisabled)
             break;
@@ -233,9 +233,9 @@ tOplkError ctrlucal_executeCmd(tCtrlCmdType cmd_p, UINT16* pRetVal_p)
         return kErrorGeneralError;
 
     // wait for response
-    for (timeout = 0; timeout < CMD_TIMEOUT_SEC; timeout++)
+    for (timeout = 0; timeout < CMD_TIMEOUT_SEC*100; timeout++)
     {
-        target_msleep(1000U);
+        target_msleep(10U);
 
         dualRet = dualprocshm_readDataCommon(instance_l.dualProcDrvInst,
                                              offsetof(tCtrlBuf, ctrlCmd),
