@@ -424,6 +424,76 @@ OBD_BEGIN()
             OBD_SUBINDEX_RAM_VAR(0x1427, 0x02, kObdTypeUInt8, kObdAccSRW, tObdUnsigned8, MappingVersion_U8, 0x00)
         OBD_END_INDEX(0x1427)
 
+        // Object 1428h: PDO_RxCommParam_28h_REC
+        OBD_BEGIN_INDEX_RAM(0x1428, 0x03, TRUE)
+            OBD_SUBINDEX_RAM_VAR(0x1428, 0x00, kObdTypeUInt8, kObdAccConst, tObdUnsigned8, NumberOfEntries, 0x02)
+            OBD_SUBINDEX_RAM_VAR_RG(0x1428, 0x01, kObdTypeUInt8, kObdAccSGRW, tObdUnsigned8, NodeID_U8, 0x00, 0, 254)
+            OBD_SUBINDEX_RAM_VAR(0x1428, 0x02, kObdTypeUInt8, kObdAccSRW, tObdUnsigned8, MappingVersion_U8, 0x00)
+        OBD_END_INDEX(0x1428)
+
+        // Object 1429h: PDO_RxCommParam_29h_REC
+        OBD_BEGIN_INDEX_RAM(0x1429, 0x03, TRUE)
+            OBD_SUBINDEX_RAM_VAR(0x1429, 0x00, kObdTypeUInt8, kObdAccConst, tObdUnsigned8, NumberOfEntries, 0x02)
+            OBD_SUBINDEX_RAM_VAR_RG(0x1429, 0x01, kObdTypeUInt8, kObdAccSGRW, tObdUnsigned8, NodeID_U8, 0x00, 0, 254)
+            OBD_SUBINDEX_RAM_VAR(0x1429, 0x02, kObdTypeUInt8, kObdAccSRW, tObdUnsigned8, MappingVersion_U8, 0x00)
+        OBD_END_INDEX(0x1429)
+
+        // Object 142Ah: PDO_RxCommParam_2Ah_REC
+        OBD_BEGIN_INDEX_RAM(0x142A, 0x03, TRUE)
+            OBD_SUBINDEX_RAM_VAR(0x142A, 0x00, kObdTypeUInt8, kObdAccConst, tObdUnsigned8, NumberOfEntries, 0x02)
+            OBD_SUBINDEX_RAM_VAR_RG(0x142A, 0x01, kObdTypeUInt8, kObdAccSGRW, tObdUnsigned8, NodeID_U8, 0x00, 0, 254)
+            OBD_SUBINDEX_RAM_VAR(0x142A, 0x02, kObdTypeUInt8, kObdAccSRW, tObdUnsigned8, MappingVersion_U8, 0x00)
+        OBD_END_INDEX(0x142A)
+
+        // Object 142Bh: PDO_RxCommParam_2Bh_REC
+        OBD_BEGIN_INDEX_RAM(0x142B, 0x03, TRUE)
+            OBD_SUBINDEX_RAM_VAR(0x142B, 0x00, kObdTypeUInt8, kObdAccConst, tObdUnsigned8, NumberOfEntries, 0x02)
+            OBD_SUBINDEX_RAM_VAR_RG(0x142B, 0x01, kObdTypeUInt8, kObdAccSGRW, tObdUnsigned8, NodeID_U8, 0x00, 0, 254)
+            OBD_SUBINDEX_RAM_VAR(0x142B, 0x02, kObdTypeUInt8, kObdAccSRW, tObdUnsigned8, MappingVersion_U8, 0x00)
+        OBD_END_INDEX(0x142B)
+
+        // Object 142Ch: PDO_RxCommParam_2Ch_REC
+        OBD_BEGIN_INDEX_RAM(0x142C, 0x03, TRUE)
+            OBD_SUBINDEX_RAM_VAR(0x142C, 0x00, kObdTypeUInt8, kObdAccConst, tObdUnsigned8, NumberOfEntries, 0x02)
+            OBD_SUBINDEX_RAM_VAR_RG(0x142C, 0x01, kObdTypeUInt8, kObdAccSGRW, tObdUnsigned8, NodeID_U8, 0x00, 0, 254)
+            OBD_SUBINDEX_RAM_VAR(0x142C, 0x02, kObdTypeUInt8, kObdAccSRW, tObdUnsigned8, MappingVersion_U8, 0x00)
+        OBD_END_INDEX(0x142C)
+
+        // Object 142Dh: PDO_RxCommParam_2Dh_REC
+        OBD_BEGIN_INDEX_RAM(0x142D, 0x03, TRUE)
+            OBD_SUBINDEX_RAM_VAR(0x142D, 0x00, kObdTypeUInt8, kObdAccConst, tObdUnsigned8, NumberOfEntries, 0x02)
+            OBD_SUBINDEX_RAM_VAR_RG(0x142D, 0x01, kObdTypeUInt8, kObdAccSGRW, tObdUnsigned8, NodeID_U8, 0x00, 0, 254)
+            OBD_SUBINDEX_RAM_VAR(0x142D, 0x02, kObdTypeUInt8, kObdAccSRW, tObdUnsigned8, MappingVersion_U8, 0x00)
+        OBD_END_INDEX(0x142D)
+
+        // Object 142Eh: PDO_RxCommParam_2Eh_REC
+        OBD_BEGIN_INDEX_RAM(0x142E, 0x03, TRUE)
+            OBD_SUBINDEX_RAM_VAR(0x142E, 0x00, kObdTypeUInt8, kObdAccConst, tObdUnsigned8, NumberOfEntries, 0x02)
+            OBD_SUBINDEX_RAM_VAR_RG(0x142E, 0x01, kObdTypeUInt8, kObdAccSGRW, tObdUnsigned8, NodeID_U8, 0x00, 0, 254)
+            OBD_SUBINDEX_RAM_VAR(0x142E, 0x02, kObdTypeUInt8, kObdAccSRW, tObdUnsigned8, MappingVersion_U8, 0x00)
+        OBD_END_INDEX(0x142E)
+
+        // Object 142Fh: PDO_RxCommParam_2Fh_REC
+        OBD_BEGIN_INDEX_RAM(0x142F, 0x03, TRUE)
+            OBD_SUBINDEX_RAM_VAR(0x142F, 0x00, kObdTypeUInt8, kObdAccConst, tObdUnsigned8, NumberOfEntries, 0x02)
+            OBD_SUBINDEX_RAM_VAR_RG(0x142F, 0x01, kObdTypeUInt8, kObdAccSGRW, tObdUnsigned8, NodeID_U8, 0x00, 0, 254)
+            OBD_SUBINDEX_RAM_VAR(0x142F, 0x02, kObdTypeUInt8, kObdAccSRW, tObdUnsigned8, MappingVersion_U8, 0x00)
+        OBD_END_INDEX(0x142F)
+
+        // Object 1430h: PDO_RxCommParam_30h_REC
+        OBD_BEGIN_INDEX_RAM(0x1430, 0x03, TRUE)
+            OBD_SUBINDEX_RAM_VAR(0x1430, 0x00, kObdTypeUInt8, kObdAccConst, tObdUnsigned8, NumberOfEntries, 0x02)
+            OBD_SUBINDEX_RAM_VAR_RG(0x1430, 0x01, kObdTypeUInt8, kObdAccSGRW, tObdUnsigned8, NodeID_U8, 0x00, 0, 254)
+            OBD_SUBINDEX_RAM_VAR(0x1430, 0x02, kObdTypeUInt8, kObdAccSRW, tObdUnsigned8, MappingVersion_U8, 0x00)
+        OBD_END_INDEX(0x1430)
+
+        // Object 1431h: PDO_RxCommParam_31h_REC
+        OBD_BEGIN_INDEX_RAM(0x1431, 0x03, TRUE)
+            OBD_SUBINDEX_RAM_VAR(0x1431, 0x00, kObdTypeUInt8, kObdAccConst, tObdUnsigned8, NumberOfEntries, 0x02)
+            OBD_SUBINDEX_RAM_VAR_RG(0x1431, 0x01, kObdTypeUInt8, kObdAccSGRW, tObdUnsigned8, NodeID_U8, 0x00, 0, 254)
+            OBD_SUBINDEX_RAM_VAR(0x1431, 0x02, kObdTypeUInt8, kObdAccSRW, tObdUnsigned8, MappingVersion_U8, 0x00)
+        OBD_END_INDEX(0x1431)
+
         // Object 1600h: PDO_RxMappParam_00h_AU64
         OBD_RAM_INDEX_RAM_PDO_MAPPING(0x1600, 0xFE, FALSE, kObdAccSRW, ObjectMapping, 0x0000000000000000LL)
 
@@ -543,6 +613,36 @@ OBD_BEGIN()
 
         // Object 1627h: PDO_RxMappParam_27h_AU64
         OBD_RAM_INDEX_RAM_PDO_MAPPING(0x1627, 0xFE, FALSE, kObdAccSRW, ObjectMapping, 0x0000000000000000LL)
+
+        // Object 1628h: PDO_RxMappParam_28h_AU64
+        OBD_RAM_INDEX_RAM_PDO_MAPPING(0x1628, 0xFE, TRUE, kObdAccSRW, ObjectMapping, 0x0000000000000000LL)
+
+        // Object 1629h: PDO_RxMappParam_29h_AU64
+        OBD_RAM_INDEX_RAM_PDO_MAPPING(0x1629, 0xFE, TRUE, kObdAccSRW, ObjectMapping, 0x0000000000000000LL)
+
+        // Object 162Ah: PDO_RxMappParam_2Ah_AU64
+        OBD_RAM_INDEX_RAM_PDO_MAPPING(0x162A, 0xFE, TRUE, kObdAccSRW, ObjectMapping, 0x0000000000000000LL)
+
+        // Object 162Bh: PDO_RxMappParam_2Bh_AU64
+        OBD_RAM_INDEX_RAM_PDO_MAPPING(0x162B, 0xFE, TRUE, kObdAccSRW, ObjectMapping, 0x0000000000000000LL)
+
+        // Object 162Ch: PDO_RxMappParam_2Ch_AU64
+        OBD_RAM_INDEX_RAM_PDO_MAPPING(0x162C, 0xFE, TRUE, kObdAccSRW, ObjectMapping, 0x0000000000000000LL)
+
+        // Object 162Dh: PDO_RxMappParam_2Dh_AU64
+        OBD_RAM_INDEX_RAM_PDO_MAPPING(0x162D, 0xFE, TRUE, kObdAccSRW, ObjectMapping, 0x0000000000000000LL)
+
+        // Object 162Eh: PDO_RxMappParam_2Eh_AU64
+        OBD_RAM_INDEX_RAM_PDO_MAPPING(0x162E, 0xFE, TRUE, kObdAccSRW, ObjectMapping, 0x0000000000000000LL)
+
+        // Object 162Fh: PDO_RxMappParam_2Fh_AU64
+        OBD_RAM_INDEX_RAM_PDO_MAPPING(0x162F, 0xFE, TRUE, kObdAccSRW, ObjectMapping, 0x0000000000000000LL)
+
+        // Object 1630h: PDO_RxMappParam_30h_AU64
+        OBD_RAM_INDEX_RAM_PDO_MAPPING(0x1630, 0xFE, TRUE, kObdAccSRW, ObjectMapping, 0x0000000000000000LL)
+
+        // Object 1631h: PDO_RxMappParam_31h_AU64
+        OBD_RAM_INDEX_RAM_PDO_MAPPING(0x1631, 0xFE, TRUE, kObdAccSRW, ObjectMapping, 0x0000000000000000LL)
 
         // Object 1800h: PDO_TxCommParam_00h_REC
         OBD_BEGIN_INDEX_RAM(0x1800, 0x03, FALSE)
@@ -1274,6 +1374,22 @@ OBD_BEGIN()
         OBD_RAM_INDEX_RAM_VARARRAY(0xA48D, (252), FALSE, kObdTypeInt8, kObdAccVPRW, tObdInteger8, PI_Output_I8, 0x00)
         OBD_RAM_INDEX_RAM_VARARRAY(0xA48E, (252), FALSE, kObdTypeInt8, kObdAccVPRW, tObdInteger8, PI_Output_I8, 0x00)
         OBD_RAM_INDEX_RAM_VARARRAY(0xA48F, (252), FALSE, kObdTypeInt8, kObdAccVPRW, tObdInteger8, PI_Output_I8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA490, (252), FALSE, kObdTypeInt8, kObdAccVPRW, tObdInteger8, PI_Output_I8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA491, (252), FALSE, kObdTypeInt8, kObdAccVPRW, tObdInteger8, PI_Output_I8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA492, (252), FALSE, kObdTypeInt8, kObdAccVPRW, tObdInteger8, PI_Output_I8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA493, (252), FALSE, kObdTypeInt8, kObdAccVPRW, tObdInteger8, PI_Output_I8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA494, (252), FALSE, kObdTypeInt8, kObdAccVPRW, tObdInteger8, PI_Output_I8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA495, (252), FALSE, kObdTypeInt8, kObdAccVPRW, tObdInteger8, PI_Output_I8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA496, (252), FALSE, kObdTypeInt8, kObdAccVPRW, tObdInteger8, PI_Output_I8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA497, (252), FALSE, kObdTypeInt8, kObdAccVPRW, tObdInteger8, PI_Output_I8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA498, (252), FALSE, kObdTypeInt8, kObdAccVPRW, tObdInteger8, PI_Output_I8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA499, (252), FALSE, kObdTypeInt8, kObdAccVPRW, tObdInteger8, PI_Output_I8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA49A, (252), FALSE, kObdTypeInt8, kObdAccVPRW, tObdInteger8, PI_Output_I8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA49B, (252), FALSE, kObdTypeInt8, kObdAccVPRW, tObdInteger8, PI_Output_I8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA49C, (252), FALSE, kObdTypeInt8, kObdAccVPRW, tObdInteger8, PI_Output_I8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA49D, (252), FALSE, kObdTypeInt8, kObdAccVPRW, tObdInteger8, PI_Output_I8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA49E, (252), FALSE, kObdTypeInt8, kObdAccVPRW, tObdInteger8, PI_Output_I8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA49F, (252), FALSE, kObdTypeInt8, kObdAccVPRW, tObdInteger8, PI_Output_I8, 0x00)
 
         OBD_RAM_INDEX_RAM_VARARRAY(0xA4C0, (252), FALSE, kObdTypeUInt8, kObdAccVPRW, tObdUnsigned8, PI_Output_U8, 0x00)
         OBD_RAM_INDEX_RAM_VARARRAY(0xA4C1, (252), FALSE, kObdTypeUInt8, kObdAccVPRW, tObdUnsigned8, PI_Output_U8, 0x00)
@@ -1291,6 +1407,22 @@ OBD_BEGIN()
         OBD_RAM_INDEX_RAM_VARARRAY(0xA4CD, (252), FALSE, kObdTypeUInt8, kObdAccVPRW, tObdUnsigned8, PI_Output_U8, 0x00)
         OBD_RAM_INDEX_RAM_VARARRAY(0xA4CE, (252), FALSE, kObdTypeUInt8, kObdAccVPRW, tObdUnsigned8, PI_Output_U8, 0x00)
         OBD_RAM_INDEX_RAM_VARARRAY(0xA4CF, (252), FALSE, kObdTypeUInt8, kObdAccVPRW, tObdUnsigned8, PI_Output_U8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA4D0, (252), FALSE, kObdTypeUInt8, kObdAccVPRW, tObdUnsigned8, PI_Output_U8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA4D1, (252), FALSE, kObdTypeUInt8, kObdAccVPRW, tObdUnsigned8, PI_Output_U8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA4D2, (252), FALSE, kObdTypeUInt8, kObdAccVPRW, tObdUnsigned8, PI_Output_U8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA4D3, (252), FALSE, kObdTypeUInt8, kObdAccVPRW, tObdUnsigned8, PI_Output_U8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA4D4, (252), FALSE, kObdTypeUInt8, kObdAccVPRW, tObdUnsigned8, PI_Output_U8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA4D5, (252), FALSE, kObdTypeUInt8, kObdAccVPRW, tObdUnsigned8, PI_Output_U8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA4D6, (252), FALSE, kObdTypeUInt8, kObdAccVPRW, tObdUnsigned8, PI_Output_U8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA4D7, (252), FALSE, kObdTypeUInt8, kObdAccVPRW, tObdUnsigned8, PI_Output_U8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA4D8, (252), FALSE, kObdTypeUInt8, kObdAccVPRW, tObdUnsigned8, PI_Output_U8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA4D9, (252), FALSE, kObdTypeUInt8, kObdAccVPRW, tObdUnsigned8, PI_Output_U8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA4DA, (252), FALSE, kObdTypeUInt8, kObdAccVPRW, tObdUnsigned8, PI_Output_U8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA4DB, (252), FALSE, kObdTypeUInt8, kObdAccVPRW, tObdUnsigned8, PI_Output_U8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA4DC, (252), FALSE, kObdTypeUInt8, kObdAccVPRW, tObdUnsigned8, PI_Output_U8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA4DD, (252), FALSE, kObdTypeUInt8, kObdAccVPRW, tObdUnsigned8, PI_Output_U8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA4DE, (252), FALSE, kObdTypeUInt8, kObdAccVPRW, tObdUnsigned8, PI_Output_U8, 0x00)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA4DF, (252), FALSE, kObdTypeUInt8, kObdAccVPRW, tObdUnsigned8, PI_Output_U8, 0x00)
 
         OBD_RAM_INDEX_RAM_VARARRAY(0xA540, (252), FALSE, kObdTypeInt16, kObdAccVPRW, tObdInteger16, PI_Output_I16, 0x0000)
         OBD_RAM_INDEX_RAM_VARARRAY(0xA541, (252), FALSE, kObdTypeInt16, kObdAccVPRW, tObdInteger16, PI_Output_I16, 0x0000)
@@ -1300,6 +1432,14 @@ OBD_BEGIN()
         OBD_RAM_INDEX_RAM_VARARRAY(0xA545, (252), FALSE, kObdTypeInt16, kObdAccVPRW, tObdInteger16, PI_Output_I16, 0x0000)
         OBD_RAM_INDEX_RAM_VARARRAY(0xA546, (252), FALSE, kObdTypeInt16, kObdAccVPRW, tObdInteger16, PI_Output_I16, 0x0000)
         OBD_RAM_INDEX_RAM_VARARRAY(0xA547, (252), FALSE, kObdTypeInt16, kObdAccVPRW, tObdInteger16, PI_Output_I16, 0x0000)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA548, (252), FALSE, kObdTypeInt16, kObdAccVPRW, tObdInteger16, PI_Output_I16, 0x0000)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA549, (252), FALSE, kObdTypeInt16, kObdAccVPRW, tObdInteger16, PI_Output_I16, 0x0000)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA54A, (252), FALSE, kObdTypeInt16, kObdAccVPRW, tObdInteger16, PI_Output_I16, 0x0000)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA54B, (252), FALSE, kObdTypeInt16, kObdAccVPRW, tObdInteger16, PI_Output_I16, 0x0000)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA54C, (252), FALSE, kObdTypeInt16, kObdAccVPRW, tObdInteger16, PI_Output_I16, 0x0000)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA54D, (252), FALSE, kObdTypeInt16, kObdAccVPRW, tObdInteger16, PI_Output_I16, 0x0000)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA54E, (252), FALSE, kObdTypeInt16, kObdAccVPRW, tObdInteger16, PI_Output_I16, 0x0000)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA54F, (252), FALSE, kObdTypeInt16, kObdAccVPRW, tObdInteger16, PI_Output_I16, 0x0000)
 
         OBD_RAM_INDEX_RAM_VARARRAY(0xA580, (252), FALSE, kObdTypeUInt16, kObdAccVPRW, tObdUnsigned16, PI_Output_U16, 0x0000)
         OBD_RAM_INDEX_RAM_VARARRAY(0xA581, (252), FALSE, kObdTypeUInt16, kObdAccVPRW, tObdUnsigned16, PI_Output_U16, 0x0000)
@@ -1314,6 +1454,18 @@ OBD_BEGIN()
         OBD_RAM_INDEX_RAM_VARARRAY(0xA641, (252), FALSE, kObdTypeInt32, kObdAccVPRW, tObdInteger32, PI_Output_I32, 0x00000000)
         OBD_RAM_INDEX_RAM_VARARRAY(0xA642, (252), FALSE, kObdTypeInt32, kObdAccVPRW, tObdInteger32, PI_Output_I32, 0x00000000)
         OBD_RAM_INDEX_RAM_VARARRAY(0xA643, (252), FALSE, kObdTypeInt32, kObdAccVPRW, tObdInteger32, PI_Output_I32, 0x00000000)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA644, (252), FALSE, kObdTypeInt32, kObdAccVPRW, tObdInteger32, PI_Output_I32, 0x00000000)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA645, (252), FALSE, kObdTypeInt32, kObdAccVPRW, tObdInteger32, PI_Output_I32, 0x00000000)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA646, (252), FALSE, kObdTypeInt32, kObdAccVPRW, tObdInteger32, PI_Output_I32, 0x00000000)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA647, (252), FALSE, kObdTypeInt32, kObdAccVPRW, tObdInteger32, PI_Output_I32, 0x00000000)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA648, (252), FALSE, kObdTypeInt32, kObdAccVPRW, tObdInteger32, PI_Output_I32, 0x00000000)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA649, (252), FALSE, kObdTypeInt32, kObdAccVPRW, tObdInteger32, PI_Output_I32, 0x00000000)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA64A, (252), FALSE, kObdTypeInt32, kObdAccVPRW, tObdInteger32, PI_Output_I32, 0x00000000)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA64B, (252), FALSE, kObdTypeInt32, kObdAccVPRW, tObdInteger32, PI_Output_I32, 0x00000000)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA64C, (252), FALSE, kObdTypeInt32, kObdAccVPRW, tObdInteger32, PI_Output_I32, 0x00000000)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA64D, (252), FALSE, kObdTypeInt32, kObdAccVPRW, tObdInteger32, PI_Output_I32, 0x00000000)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA64E, (252), FALSE, kObdTypeInt32, kObdAccVPRW, tObdInteger32, PI_Output_I32, 0x00000000)
+        OBD_RAM_INDEX_RAM_VARARRAY(0xA64F, (252), FALSE, kObdTypeInt32, kObdAccVPRW, tObdInteger32, PI_Output_I32, 0x00000000)
 
         OBD_RAM_INDEX_RAM_VARARRAY(0xA680, (252), FALSE, kObdTypeUInt32, kObdAccVPRW, tObdUnsigned32, PI_Output_U32, 0x00000000)
         OBD_RAM_INDEX_RAM_VARARRAY(0xA681, (252), FALSE, kObdTypeUInt32, kObdAccVPRW, tObdUnsigned32, PI_Output_U32, 0x00000000)
