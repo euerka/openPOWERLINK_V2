@@ -427,8 +427,6 @@ static tThreadResult sdoUdpThread(tThreadArg pArg_p)
     }
 
     pthread_exit(NULL);
-
-    return 0;
 }
 
 /// \}
